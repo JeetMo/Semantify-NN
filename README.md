@@ -39,7 +39,8 @@ wget https://www.dropbox.com/sh/aap4zh8aclgw4s4/AADhQE4J54GicW9ueiQlV4Xna?dl=1 -
 unzip models.zip
 ```
 
-## How to run (* Current code only supports fully connected models, CNN verification code to be added soon)
+## How to run 
+#### (* Current code only supports fully connected models, CNN verification code to be added soon)
 
 ### Verification
 
@@ -69,7 +70,7 @@ with the parameters
 Similarly for the rotation experiments use :
 
 ```
-python main_semantic_ rotate.py --model=mnist --numimage=2 --numlayer=3 --hidden=1024 --eps=100 --delta=0.5 --subdiv=100
+python main_semantic_rotate.py --model=mnist --numimage=2 --numlayer=3 --hidden=1024 --eps=100 --delta=0.5 --subdiv=100
 ```
 where the extra parameter
 -- subdiv (int) : number of implicit splits to use
