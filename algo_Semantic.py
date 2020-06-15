@@ -1,4 +1,3 @@
-from numba import jit, njit
 import numpy as np
 
 from algo_CROWN import CROWN
@@ -154,7 +153,7 @@ class Semantic(CROWN):
 
         return UB_final, LB_final, constant_gap, probnd, As, Bs
 
-    def certify_eps_explicit(self, predict_class, target_class, eps, x0, hsl, p="i", activation="relu", div = 1):
+    def certify_eps_explicit(self, predict_class, target_class, eps, x0, hsl, p="i", activation="relu", delta = None):
         
         if hsl == "lighten":
             w_new, b_new = lighten_layers(x0, self.weights[0], self.biases[0])
@@ -167,7 +166,8 @@ class Semantic(CROWN):
         else:
             raise ValueError
 
-        eps_val = eps / div
+        eps_val = delta
+        div = int(np.floor((eps / eps_val) + 0.00001))
         min_val = 100.0
         max_cert = (-eps, eps)
 

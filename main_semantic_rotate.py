@@ -18,14 +18,14 @@ def handle_parser(parser):
                         default="mnist",
                         choices=["mnist", "cifar", "gtsrb"],
                         help='model to be used')
-    parser.add_argument('--theta',
-                        default=5.0,
+    parser.add_argument('--eps',
+                        default=100.0,
                         type=float,
                         help="theta for verification")
-    parser.add_argument('--theta_delta',
-                        default=1.0,
+    parser.add_argument('--delta',
+                        default=0.5,
                         type=float,
-                        help="theta for verification")
+                        help="size of explicit splits")
     parser.add_argument('--subdiv',
                         default=5,
                         type=int,
@@ -205,8 +205,8 @@ if __name__ == "__main__":
         predict_label = np.argmax(true_labels[i])
         target_label = np.argmax(targets[i])
 
-        theta = args.theta
-        theta_delta = args.theta_delta
+        theta = args.eps
+        theta_delta = args.delta
 
         verifiable = True
         divisions = args.subdiv

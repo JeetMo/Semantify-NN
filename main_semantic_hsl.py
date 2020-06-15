@@ -26,10 +26,10 @@ def handle_parser(parser):
                         default=2048,
                         type=int,
                         help="number of hidden neurons per layer")
-    parser.add_argument('--div',
-                        default=1,
-                        type=int,
-                        help='number of divisions')
+    parser.add_argument('--delta',
+                        default=0.001,
+                        type=float,
+                        help='size of divisions')
     parser.add_argument('--numlayer',
                         default=5,
                         type=int,
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
     total_verifiable = 0
     lower, upper = 0.0, 0.0
-    divisions = args.div
+    delta = args.delta
     for i in range(len(inputs)):
         Nsamp += 1
         p = args.norm  # p = "1", "2", or "i"
@@ -207,7 +207,7 @@ if __name__ == "__main__":
         start_1 = time.time()
         # run CROWN
         robustness, max_cert = Semantic_BND.certify_eps_explicit(predict_label, target_label, eps, inputs[i],
-                                                                    args.hsl, p, div = divisions)
+                                                                    args.hsl, p, delta = delta)
 
         print("verified", time.time() - start_1, robustness)
 
